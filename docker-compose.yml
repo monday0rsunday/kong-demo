@@ -1,0 +1,31 @@
+version: "2"
+services:
+    kong-db:
+        image: postgres:9.4
+        ports:
+            - 5432:5432
+        environment:
+            - POSTGRES_USER=kong
+            - POSTGRES_PASSWORD=abcd1234
+            - POSTGRES_DB=kong
+    kong-distro:
+        image: kong
+        restart: always
+        ports:
+            # http proxy port
+            - 8000:8000
+            # https proxy port
+            - 8443:8443
+            # admin API
+            - 8001:8001
+            # cluster
+            - 7947:7946
+            #- 7946/udp:7946/udp
+        links:
+            - kong-db:kong-db
+        environment:
+            - KONG_DATABASE=postgres
+            - KONG_PG_HOST=kong-db
+            - KONG_PG_USER=kong
+            - KONG_PG_PASSWORD=abcd1234
+            - KONG_PG_DATABASE=kong
