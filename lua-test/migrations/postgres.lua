@@ -1,6 +1,6 @@
 return {
 	{
-		name = "2016-10-05_store_last_request",
+		name = "2016-10-05_last_request",
 		up = [[
 			CREATE TABLE IF NOT EXISTS last_request(
 				id uuid,

@@ -9,7 +9,8 @@ services:
             - POSTGRES_PASSWORD=abcd1234
             - POSTGRES_DB=kong
     kong-distro:
-        image: kong
+        image: kong:0.9.2
+        command: sleep 30000
         restart: always
         ports:
             # http proxy port

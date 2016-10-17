@@ -1,5 +1,8 @@
+local sing = require "kong.singletons"
 local BasePlugin = require "kong.plugins.base_plugin"
-local HelloWorldhandler =BasePlugin:extend()
+
+local HelloWorldhandler = BasePlugin:extend()
+
 
 function HelloWorldhandler:new()
 	HelloWorldhandler.super.new(self, "lua-test")
