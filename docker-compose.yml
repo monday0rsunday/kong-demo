@@ -10,8 +10,11 @@ services:
             - POSTGRES_DB=kong
     kong-distro:
         image: kong:0.9.2
-        #command: sleep 30000
+        command: sleep 30000
         restart: always
+        volumes:
+            - $PWD/kong.conf:/etc/kong/kong.conf
+            - $PWD/lua-test:/usr/local/share/lua/5.1/kong/plugins/lua-test
         ports:
             # http proxy port
             - 8000:8000
